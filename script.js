@@ -1,3 +1,5 @@
+'use strict';
+
 const title = 1;
 
 let screens ,
