@@ -1,15 +1,14 @@
-const title = '1';
+const title = 1;
 
-let screens = '2';
+let screens ,
 
-let screenPrice = '3';
+screenPrice ,
 
-let rollback = '4';
+rollback ,
 
-let fullPrice = '5';
+fullPrice ,
 
-let adaptive = '6';
+adaptive ;
 
-  console.log('Упячка');
-  
-  alert ("First alert!");
+  console.log('Упячка'); 
+  alert ('First alert!');
