@@ -2,15 +2,15 @@
 
 const title = 'Название проекта';
 
-let screens = 'Простые, Сложные, Интерактивные'.toLowerCase() ,
+let screens = 'Простые, Сложные, Интерактивные'.toLowerCase(),
 
-screenPrice = 5000 ,
+screenPrice = 5000,
 
-rollback = 15 ,
+rollback = 15,
 
-fullPrice = 80000 ,
+fullPrice = 80000,
 
-adaptive = true ;
+adaptive = true;
 
   console.log(typeof title);
 
