@@ -1,16 +1,29 @@
 'use strict';
 
-const title = 1;
+const title = 'Название проекта';
 
-let screens ,
+let screens = 'Простые, Сложные, Интерактивные'.toLowerCase() ,
 
-screenPrice ,
+screenPrice = 5000 ,
 
-rollback ,
+rollback = 15 ,
 
-fullPrice ,
+fullPrice = 80000 ,
 
-adaptive ;
+adaptive = true ;
 
-  console.log('Упячка'); 
-  alert ('First alert!');
+  console.log(typeof title);
+
+  console.log(typeof fullPrice);
+
+  console.log(typeof adaptive);
+
+  console.log(screens.length);
+
+  console.log("Cтоимость верстки экранов " + screenPrice + " рублей");
+
+  console.log("Cтоимость разработки сайта " + fullPrice + " рублей");
+
+  console.log(screens.split(', '));
+
+  console.log("Процент отката посреднику за работу " + fullPrice * ( rollback / 100));
