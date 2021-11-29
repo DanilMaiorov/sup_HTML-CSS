@@ -1,16 +1,61 @@
 'use strict';
 
-const title = 'Название проекта';
+const title = prompt('Как называется Ваш проект?');
 
-let screens = 'Простые, Сложные, Интерактивные'.toLowerCase(),
+let screens = 'Простые, Сложные, Интерактивные'.toLowerCase();
 
-screenPrice = 5000,
+    screens = prompt('Какие типы экранов нужно разработать? например:', ' Простые, Сложные, Интерактивные');
 
-rollback = 15,
+let screenPrice = parseInt(prompt('Сколько будет стоить данная работа? например:', ' 12000 рублей'));
 
-fullPrice = 80000,
+let rollback = 15;
 
-adaptive = true;
+let service1 = prompt('Какой дополнительный тип услуги нужен?');
+
+let servicePrice1 = parseFloat(prompt('Сколько это будет стоить?'), 2);
+
+console.log(servicePrice1 + ' рублей');
+
+let service2 = prompt('Какой дополнительный тип услуги нужен?');
+
+let servicePrice2 = parseFloat(prompt('Сколько это будет стоить?'), 2);
+
+console.log(servicePrice2 + ' рублей');
+
+let fullPrice = parseInt(screenPrice + servicePrice1 + servicePrice2);
+
+if (30000 < fullPrice) {
+  Math.ceil(fullPrice * 0.9);
+
+  console.log('Даём скидку 10%');
+
+  console.log('Сумма скидки ' + fullPrice * 0.1 + ' рублей');
+
+} else if (15000 <= fullPrice && fullPrice <= 30000) {
+  Math.ceil(fullPrice * 0.95);
+
+  console.log('Даём скидку 5%');
+
+  console.log('Сумма скидки ' + fullPrice * 0.05 + ' рублей');
+
+} else if (0 < fullPrice && fullPrice < 15000) {
+
+  console.log('Скидка не предусмотрена');
+
+  console.log(fullPrice);
+
+} else { (fullPrice < 0); 
+
+  console.log('Что-то пошло не так');
+}
+
+console.log(fullPrice + ' рублей');
+
+let servicePercentPrice = Math.ceil(fullPrice - (fullPrice * ( rollback / 100 )));
+
+console.log(servicePercentPrice + ' рублей');
+
+let adaptive = confirm('Нужен ли адаптив на сайте?');
 
   console.log(typeof title);
 
