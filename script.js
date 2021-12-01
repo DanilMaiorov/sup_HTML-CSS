@@ -1,31 +1,33 @@
 'use strict';
 
-function getTitle(title) {
-  let newTitle = title.trim();
 
-  return newTitle.slice(0, 1).toUpperCase() + newTitle.slice(1).toLowerCase();
-}
 //let title = getTitle(prompt('Как называется Ваш проект?'));
 let title = prompt('Как называется Ваш проект?');
     title = getTitle(title);
 
 let screens = prompt('Какие типы экранов нужно разработать?', 'например: Простые, Сложные, Интерактивные '),
-    screenPrice = prompt('Сколько будет стоить данная работа? например:', ' 12000'),
+    screenPrice = +prompt('Сколько будет стоить данная работа? например:', ' 12000'),
     adaptive = confirm('Нужен ли адаптив на сайте?'),
     service1 = prompt('Какой дополнительный тип услуги нужен?', 'Адаптив мобильной'),
-    servicePrice1 = prompt('Сколько это будет стоить?', 3000),
+    servicePrice1 = +prompt('Сколько это будет стоить?', 3000),
     service2 = prompt('Какой дополнительный тип услуги нужен?', 'Адаптив планшета'),
-    servicePrice2 = prompt('Сколько это будет стоить?', 4000),
+    servicePrice2 = +prompt('Сколько это будет стоить?', 4000),
     rollback = 15;
 
+function getTitle(title) {
+  let newTitle = title.trim();
+
+  return newTitle.slice(0, 1).toUpperCase() + newTitle.slice(1).toLowerCase();
+}
+
 const getAllServicePrices = function() {
-  return +servicePrice1 + +servicePrice2;
+  return servicePrice1 + servicePrice2;
 };
 
 const allServicePrices = getAllServicePrices();
 
 function getFullPrice() {
-  return +screenPrice + +allServicePrices;
+  return screenPrice + allServicePrices;
 }
 
 let fullPrice = getFullPrice();
