@@ -103,7 +103,7 @@ appData.start();
 
 /*****************ЗАДАНИЕ lesson06******************/
 
-/* let tryq = 10;
+let tryq = 10;
 
 let randomNumber = Math.floor(Math.random() * 100 );
 
@@ -143,4 +143,3 @@ function secretNumber () {
       return secretNumber();
 }
 secretNumber();
-*/
