@@ -1,4 +1,5 @@
- /*'use strict';
+ 'use strict';
+ 
     const appData = {
       title: '',
       screens: '',
@@ -95,14 +96,14 @@
         }
       },
     }
-appData.start();*/
+appData.start();
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /*****************ЗАДАНИЕ lesson06******************/
-
+/*
 let tryq = 10;
 
 let randomNumber = Math.floor(Math.random() * 100 );
@@ -142,4 +143,4 @@ function secretNumber () {
   }
       return secretNumber();
 }
-secretNumber();
+secretNumber();*/
