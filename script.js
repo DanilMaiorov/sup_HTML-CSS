@@ -9,8 +9,8 @@ const appData = {
   allServicePrices: 0,
   fullPrice: 0,
   servicePercentPrice: 0,
-  services: {},
-  
+  services: [],
+
   start: function(){
     appData.asking();
     appData.addPrices();
@@ -22,7 +22,7 @@ const appData = {
   asking: function () {
     appData.title 
     for (let i = 0; i < 1; i++) {
-  
+
       let titleName = 0;
       do {
         titleName = prompt('Как называется Ваш проект?', "Калькулятор верстки");
@@ -49,44 +49,46 @@ const appData = {
         appData.screens.push({id: i, name: name, price: price});
       }
       for (let i = 0; i < 2; i++) {
-  
+
         let name = 0;
         do {
           name = prompt('Какой дополнительный тип услуги нужен?', 'Адаптив мобильной');
         }
         while (!appData.isString(name)) {
         };
-  
-         let price = 0
-         do {
-           price = prompt('Сколько это будет стоить?', '2000');
-         }
-         while (!appData.isNumber(price)); {
-           appData.services[name] = +price;
-         }
-     }
+
+        let price = 0
+        do {
+          price = prompt('Сколько это будет стоить?', '2000');
+        }
+        while (!appData.isNumber(price)); {
+          appData.services.push({id: i, name: name, price: price});
+        }
+    }
       appData.adaptive = confirm('Нужен ли адаптив на сайте?');
   },
   addPrices: function() {
-    for (let screen of appData.screens){
-      appData.screenPrice += + screen.price;  
-      };
-    for (let key in appData.services){
-       appData.allServicePrices += appData.services[key]
-    };
-  
+    appData.screenPrice = appData.screens.map(function (a) {
+      return a.price;
+    }).reduce(function (previousValue, currentValue) {
+      return +previousValue + +currentValue;
+    });
+
+    for (let price of appData.services){
+      appData.allServicePrices += +price.price; 
+  }
   },
   isNumber: function (num){
     return !isNaN(parseFloat(num)) && isFinite(num);
   },
-  
+
   isString: function (str){
     return isNaN(parseFloat(str)) && !isFinite(str);
   },
-  
+
   getTitle: function() {
     appData.title = appData.title.trim();
-  
+
     appData.title = appData.title.slice(0, 1).toUpperCase() + appData.title.slice(1).toLowerCase();
   },
   getFullPrice: function() {
@@ -111,8 +113,9 @@ const appData = {
   },
   logger: function (){
     console.log(appData.title + ' - название проекта');
-    console.log(appData.screens/* + ' - выбранные мониторы' */);
+    console.log(appData.screens);
     console.log(appData.screenPrice + ' руб - cтоимость выбранных мониторов');
+    console.log(appData.services);
     let adapTive = this.adaptive ? ' нужен' : ' не нужен';
     console.log(`Адаптив${adapTive}`);
     console.log(appData.rollback + '% - Процент отката посреднику');
@@ -121,11 +124,11 @@ const appData = {
     console.log(appData.servicePercentPrice + ' руб - полная стоимость за вычетом отката посреднику');
     console.log(appData.getRollBackMessage());
     for (let key in appData){
-         console.log('Свойства и методы объекта - ' + key);
+        console.log('Свойства и методы объекта - ' + key);
     }
   },
   }
-  appData.start();
+appData.start();
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
