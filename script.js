@@ -1,6 +1,6 @@
  'use strict';
  
-    const appData = {
+/*     const appData = {
       title: '',
       screens: '',
       screenPrice: 0,
@@ -96,15 +96,14 @@
         }
       },
     }
-appData.start();
-
+appData.start(); */
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /*****************ЗАДАНИЕ lesson06******************/
-/*
-let tryq = 10;
+
+/* let tryq = 10;
 
 let randomNumber = Math.floor(Math.random() * 100 );
 
@@ -132,7 +131,7 @@ function secretNumber () {
       alert ('Поздравляю, Вы угадали!!!!');
           
       return userNumber;
-      }        
+      }
 
   } else if (userNumber === null) {
       confirm ('Игра окончена!'); 
@@ -143,4 +142,4 @@ function secretNumber () {
   }
       return secretNumber();
 }
-secretNumber();*/
+secretNumber(); */
