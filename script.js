@@ -1,5 +1,3 @@
-'use strict';
- 
 const appData = {
   title: '',
   screens: [],
@@ -31,7 +29,7 @@ const appData = {
       };
       appData.title = titleName;
     }
-      for (let i = 0; i < 1; i++) {
+      for (let i = 0; i < 2; i++) {
       
         let name = 0;
         do {
@@ -135,7 +133,7 @@ appData.start();
 
 /*****************ЗАДАНИЕ lesson06******************/
 
-/* let tryq = 10;
+/*  let tryq = 10;
 
 let randomNumber = Math.floor(Math.random() * 100 );
 
