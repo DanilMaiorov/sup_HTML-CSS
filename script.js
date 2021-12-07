@@ -1,3 +1,28 @@
+'use strict';
+
+const title = document.getElementsByTagName('h1')
+for( let i = 0; i < title.length; i++)
+title[i];
+
+const calcButton = document.getElementsByClassName('handler_btn'),
+
+plusButton = document.querySelector('.screen-btn'),
+
+otherItemsPercent = document.querySelectorAll('.main-controls__item.other-items.percent'),
+
+otherItemsNumber = document.querySelectorAll('.main-controls__item.other-items.number'),
+
+rollbackInput = document.querySelector('.main-controls__item.rollback > .main-controls__range > input'),
+
+rollbackSpan = document.querySelector('.main-controls__item.rollback > .main-controls__range > span');
+
+const totalInput = document.getElementsByClassName('total-input')
+  for (let i = 0; i < totalInput.length; i++)
+  totalInput[i];
+  
+let newScreen = document.querySelectorAll('.main-controls__item.screen')
+newScreen[0];
+   
 const appData = {
   title: '',
   screens: [],
@@ -23,7 +48,7 @@ const appData = {
 
       let titleName = 0;
       do {
-        titleName = prompt('Как называется Ваш проект?', "Калькулятор верстки");
+        titleName = /* prompt */('Как называется Ваш проект?', "Калькулятор верстки");
       }
       while (!appData.isString(titleName)) {
       };
@@ -33,14 +58,14 @@ const appData = {
       
         let name = 0;
         do {
-          name = prompt('Какие типы экранов нужно разработать?', 'например: Простые, Сложные, Интерактивные ');
+          name = /* prompt */('Какие типы экранов нужно разработать?', 'например: Простые, Сложные, Интерактивные ');
         }
         while (!appData.isString(name)) {
         }
         
         let price = 0;
         do {
-          price = prompt('Сколько будет стоить данная работа?', '25000');
+          price = /* prompt */('Сколько будет стоить данная работа?', '25000');
         }
         while (!appData.isNumber(price)) {
         }
@@ -50,20 +75,20 @@ const appData = {
 
         let name = 0;
         do {
-          name = prompt('Какой дополнительный тип услуги нужен?', 'Адаптив мобильной');
+          name = /* prompt */('Какой дополнительный тип услуги нужен?', 'Адаптив мобильной');
         }
         while (!appData.isString(name)) {
         };
 
         let price = 0
         do {
-          price = prompt('Сколько это будет стоить?', '2000');
+          price = /* prompt */('Сколько это будет стоить?', '2000');
         }
         while (!appData.isNumber(price)); {
           appData.services.push({id: i, name: name, price: price});
         }
     }
-      appData.adaptive = confirm('Нужен ли адаптив на сайте?');
+      appData.adaptive = /* confirm */('Нужен ли адаптив на сайте?');
   },
   addPrices: function() {
     appData.screenPrice = appData.screens.map(function (a) {
@@ -121,9 +146,9 @@ const appData = {
     console.log(appData.fullPrice + ' руб - полная стоимость');
     console.log(appData.servicePercentPrice + ' руб - полная стоимость за вычетом отката посреднику');
     console.log(appData.getRollBackMessage());
-    for (let key in appData){
+    /* for (let key in appData){
         console.log('Свойства и методы объекта - ' + key);
-    }
+    } */
   },
   }
 appData.start();
