@@ -17,7 +17,8 @@ rollbackSpan = document.querySelector('.main-controls__item.rollback > .main-con
 const totalInput = document.getElementsByClassName('total-input');
   for (let i = 0; i < totalInput.length; i++)
   console.log(totalInput[i]);
-let newScreen = document.querySelectorAll('.main-controls__item.screen')[0];
+  
+let newScreen = document.querySelectorAll('.main-controls__item.screen ')[0];
 
 const appData = {
   title: '',
@@ -39,7 +40,7 @@ const appData = {
     appData.logger();
   },
   asking: function () {
-    appData.title 
+    appData.title
     for (let i = 0; i < 1; i++) {
 
       let titleName = 0;
@@ -47,7 +48,7 @@ const appData = {
         titleName = prompt ('Как называется Ваш проект?', "Калькулятор верстки");
       }
       while (!appData.isString(titleName)) {
-      };
+      }
       appData.title = titleName;
     }
       for (let i = 0; i < 2; i++) {
@@ -74,9 +75,9 @@ const appData = {
           name = prompt('Какой дополнительный тип услуги нужен?', 'Адаптив мобильной');
         }
         while (!appData.isString(name)) {
-        };
+        }
 
-        let price = 0
+        let price = 0;
         do {
           price = prompt('Сколько это будет стоить?', '2000');
         }
@@ -125,7 +126,7 @@ const appData = {
       result = 'Даём скидку ' + 5 + '%';
     } else if (0 < appData.fullPrice && appData.fullPrice < 15000) {
       result = 'Скидка не предусмотрена';
-    } else { (appData.fullPrice < 0)
+    } else { (appData.fullPrice < 0);
       result = 'Что-то пошло не так';
     }
     return result;
@@ -146,7 +147,7 @@ const appData = {
         console.log('Свойства и методы объекта - ' + key);
     } */
   },
-  }
+  };
 appData.start();
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
