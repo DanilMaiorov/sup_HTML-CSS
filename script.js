@@ -2,23 +2,27 @@
 
 const title = document.getElementsByTagName('h1')[0];
 
-const calcButton = document.getElementsByClassName('handler_btn'),
+
+
+const startButton = document.getElementsByClassName('handler_btn')[0],
+      resetButton = document.getElementsByClassName('handler_btn')[1],
 
 plusButton = document.querySelector('.screen-btn'),
 
-otherItemsPercent = document.querySelectorAll('.main-controls__item.other-items.percent'),
+otherItemsPercent = document.querySelectorAll('.other-items.percent'),
+otherItemsNumber = document.querySelectorAll('.other-items.number'),
 
-otherItemsNumber = document.querySelectorAll('.main-controls__item.other-items.number'),
+rollbackInput = document.querySelector('.rollback input'),
+rollbackSpan = document.querySelector(' .rollback .range-value');
 
-rollbackInput = document.querySelector('.main-controls__item.rollback > .main-controls__range > input'),
-
-rollbackSpan = document.querySelector('.main-controls__item.rollback > .main-controls__range > span');
-
-const totalInput = document.getElementsByClassName('total-input');
-  for (let i = 0; i < totalInput.length; i++)
-  console.log(totalInput[i]);
+const total = document.getElementsByClassName('total-input')[0];
+const totalCount = document.getElementsByClassName('total-input')[1];
+const totalCountOther = document.getElementsByClassName('total-input')[2];
+const totalFullCount = document.getElementsByClassName('total-input')[3];
+const totalCountRollback = document.getElementsByClassName('total-input')[4];
   
-let newScreen = document.querySelectorAll('.main-controls__item.screen ')[0];
+let newScreen = document.querySelectorAll('.screen');
+ 
 
 const appData = {
   title: '',

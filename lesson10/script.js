@@ -25,7 +25,7 @@ const parts = document.querySelectorAll('li')
     elems[5].append(parts[45], parts[39], parts[40], parts[38], parts[42], parts[43], parts[41], parts[44], parts[46]); 
 
 const newPart = document.createElement('li');
-    newPart.innerHTML = 'Глава 8: За пределими ES6';
+    newPart.innerHTML = 'Глава 8: За пределами ES6';
     elems[2].append(newPart);
 
 const parts1 = document.querySelectorAll('li');
