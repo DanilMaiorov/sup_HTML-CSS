@@ -48,9 +48,9 @@ const appData = {
     totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber;
     totalFullCount.value = appData.fullPrice;
     totalCountRollback.value = appData.servicePercentPrice;
+
   },
   init: function(){
-    rollbackInput.disabled = true;
     appData.addTitle();
     rollbackInput.addEventListener('input', appData.addRollback);
     startBtn.addEventListener('click', appData.checkValues);  
@@ -73,9 +73,7 @@ const appData = {
     appData.start();
     } else {
     alert('Выберите тип мониторов и их количество');
-    }
-    rollbackInput.disabled = false;
-    
+    }  
   },
   addScreens: function() {
     screens = document.querySelectorAll('.screen');
@@ -113,9 +111,12 @@ const appData = {
     screens[screens.length - 1].after(cloneScreen);
   },
   addRollback: function(event) {
+    
     rollbackSpan.textContent = event.target.value + '%'; 
+    appData.rollback = +rollbackInput.value
  
-    appData.servicePercentPrice = Math.ceil(appData.fullPrice - (appData.fullPrice * (+rollbackInput.value / 100 )));
+    appData.servicePercentPrice = Math.ceil(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100 )));
+    totalCountRollback.value = appData.servicePercentPrice;
   },
   
   addPrices: function() {
@@ -129,6 +130,8 @@ const appData = {
       appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100 );
     }
       appData.fullPrice = +appData.screenPrice + +appData.servicePricesPercent + +appData.servicePricesNumber;
+
+      appData.servicePercentPrice = Math.ceil(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100 )));
       
       appData.countScreens = appData.screens.map(function (a) {
         return a.count;
