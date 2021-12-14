@@ -65,7 +65,7 @@ const appData = {
     screens.forEach(screen => {
       const select = screen.querySelector('select');
       const input = screen.querySelector('input');
-      if (select.value === '' && input.value.trim() === ''){
+      if (select.value === '' || input.value.trim() === ''){
       appData.isError = true;
       }
     });        
@@ -111,10 +111,8 @@ const appData = {
     screens[screens.length - 1].after(cloneScreen);
   },
   addRollback: function(event) {
-    
     rollbackSpan.textContent = event.target.value + '%'; 
     appData.rollback = +rollbackInput.value
- 
     appData.servicePercentPrice = Math.ceil(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100 )));
     totalCountRollback.value = appData.servicePercentPrice;
   },
