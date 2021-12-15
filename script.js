@@ -19,6 +19,7 @@ const totalFullCount = document.getElementsByClassName('total-input')[3];
 const totalCountRollback = document.getElementsByClassName('total-input')[4];
 
 let screens = document.querySelectorAll('.screen');
+const cloneScreen = screens[0].cloneNode(true);
 
 const cmsCheckbox = document.querySelector('#cms-open')
 const cmsVariants = document.querySelector('.hidden-cms-variants')
@@ -172,8 +173,9 @@ const appData = {
     });
   },
   addScreenBlock: function() {
-    const cloneScreen = screens[0].cloneNode(true);
-    screens[screens.length - 1].after(cloneScreen);
+    let newCloneScreen = cloneScreen.cloneNode(true);
+    screens[screens.length - 1].after(newCloneScreen); 
+    screens = document.querySelectorAll('.screen');
   },
   addPrices: function() {
     for (let screen of this.screens){
@@ -195,7 +197,6 @@ const appData = {
         this.fullPrice = +this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber;
       }
       this.servicePercentPrice = Math.ceil(this.fullPrice - (this.fullPrice * (this.rollback / 100 )));
-      
       this.countScreens = this.screens.map((a) => {
         return a.count;
         }).reduce((previousValue, currentValue) => {
@@ -222,6 +223,7 @@ const appData = {
     this.resetTotalInput();
     this.changeResetBtn();
     this.resetCmsControl();
+    this.clear();
   },
   removeBlockScreens: function() {
     screens = document.querySelectorAll('.screen');
@@ -291,6 +293,20 @@ const appData = {
     btnReset.style.display = 'none';
     let btnStart = document.getElementsByClassName('handler_btn')[0];
     btnStart.style.display = '';
+  },
+  clear: function() {
+    this.title = '';
+    this.screens = [];
+    this.screenPrice = 0;
+    this.adaptive = true;
+    this.rollback = 0;
+    this.servicePricesPercent = 0;
+    this.servicePricesNumber = 0;
+    this.fullPrice = 0;
+    this.servicePercentPrice = 0;
+    this.servicesPercent = {};
+    this.servicesNumber = {};
+    this.isError = false;
   },
   logger: function (){
     console.log(this.screens);
