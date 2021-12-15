@@ -21,13 +21,11 @@ const totalCountRollback = document.getElementsByClassName('total-input')[4];
 let screens = document.querySelectorAll('.screen');
 
 const cmsCheckbox = document.querySelector('#cms-open')
-console.log(cmsCheckbox);
 const cmsVariants = document.querySelector('.hidden-cms-variants')
-console.log(cmsVariants);
-
 const otherOption = document.querySelector('#cms-select');
 const otherInput = document.querySelector('.hidden-cms-variants > .main-controls__input')
-console.log(otherOption)
+const otherInputValue = document.querySelector('#cms-other-input');
+
 const appData = {
   title: '',
   screens: [],
@@ -56,15 +54,12 @@ const appData = {
     totalCountRollback.value = this.servicePercentPrice;
   },
   init: function(){
-/*     debugger
-    (()=>{
-      console.log(this)
-    })() */
     this.addTitle();
     this.cmsView();
     rollbackInput.addEventListener('input', this.addRollback.bind(this));
     startBtn.addEventListener('click', this.checkValues.bind(this));  
     buttonPlus.addEventListener('click', this.addScreenBlock);
+    otherOption.addEventListener('input',this.cmsOtherOption);
     resetBtn.addEventListener('click', this.reset.bind(this));// addEventListener - имеет свой констекст вызова (this), bind переопределяет this другим контекстом вызова, в данном случае тот, который находится выше по дереву. (appData).
     otherOption.addEventListener('input',this.cmsOtherOption);
   },
@@ -75,25 +70,24 @@ const appData = {
      } else {
       cmsVariants.style.display = 'none';
      }
-     console.dir(otherOption);
    });
   },
   cmsOtherOption: function() {
       if (this.value === 'other') {
-          debugger
+/*           debugger
           (()=>{
           console.log(this);
-          })();
+          })(); */
       otherInput.style.display = 'flex';
-
       } else {
          (this.value !== 'other');
-          debugger
+/*           debugger
           (()=>{
           console.log(this);
-          })();
+          })(); */
       otherInput.style.display = 'none';
       }
+      console.log(otherOption.value);
   },
   addTitle: function() { 
     document.title = title.textContent;
@@ -129,6 +123,13 @@ const appData = {
         select.disabled = true;
         input.disabled = true;
         buttonPlus.disabled = true;
+
+        cmsCheckbox.disabled = true;
+        cmsVariants.disabled = true;
+        otherOption.disabled = true;
+        otherInput.disabled = true;
+        otherInputValue.disabled = true;
+
         startBtn.style.display = 'none'
         resetBtn.style.display = 'flex'
         otherItemsNumber.forEach((item) => {
@@ -183,9 +184,16 @@ const appData = {
     }
     for (let key in this.servicesPercent){
       this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100 );
-    }
-      this.fullPrice = +this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber;
-
+    };     
+      this.otherOption = +otherOption.value
+      this.otherInputValue = +otherInputValue.value
+      if (otherOption.value === '50') {
+        this.fullPrice = (+this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber) + ((+this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber) * (this.otherOption / 100));
+      } else if (otherInputValue.value !== 0) {
+        this.fullPrice = (+this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber) + ((+this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber) * (this.otherInputValue / 100));
+      } else {
+        this.fullPrice = +this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber;
+      }
       this.servicePercentPrice = Math.ceil(this.fullPrice - (this.fullPrice * (this.rollback / 100 )));
       
       this.countScreens = this.screens.map((a) => {
@@ -200,15 +208,6 @@ const appData = {
     this.servicePercentPrice = Math.ceil(this.fullPrice - (this.fullPrice * (this.rollback / 100 )));
     totalCountRollback.value = this.servicePercentPrice;
   },
-  logger: function (){
-    console.log(this.screens);
-    console.log(this.screenPrice + ' руб - cтоимость выбранных мониторов');
-    let adapTive = this.adaptive ? ' нужен' : ' не нужен';
-    console.log(`Адаптив${adapTive}`);
-    console.log(this.rollback + '% - Процент отката посреднику');
-    console.log(this.fullPrice + ' руб - полная стоимость');
-    console.log(this.servicePercentPrice + ' руб - полная стоимость за вычетом отката посреднику');
-  },
   changeStartBtn: function() {
     let btnStart = document.getElementsByClassName('handler_btn')[0];
     btnStart.style.display = 'none';
@@ -222,6 +221,7 @@ const appData = {
     this.rollbackReset();
     this.resetTotalInput();
     this.changeResetBtn();
+    this.resetCmsControl();
   },
   removeBlockScreens: function() {
     screens = document.querySelectorAll('.screen');
@@ -273,13 +273,34 @@ const appData = {
     totalFullCount.value = '';
     totalCountRollback.value = '';
   },
+  resetCmsControl: function () {
+
+    cmsCheckbox.disabled = false;
+    cmsCheckbox.checked = false;
+    cmsVariants.disabled = false;
+    otherOption.disabled = false;
+    otherInput.disabled = false;
+    otherInputValue.disabled = false;
+    otherOption.value = '';
+    otherInputValue.value = '';
+    cmsVariants.style.display = 'none';
+    otherInput.style.display = 'none';
+  },
   changeResetBtn: function() {
     let btnReset = document.getElementsByClassName('handler_btn')[1];
     btnReset.style.display = 'none';
     let btnStart = document.getElementsByClassName('handler_btn')[0];
     btnStart.style.display = '';
   },
-
+  logger: function (){
+    console.log(this.screens);
+    console.log(this.screenPrice + ' руб - cтоимость выбранных мониторов');
+    let adapTive = this.adaptive ? ' нужен' : ' не нужен';
+    console.log(`Адаптив${adapTive}`);
+    console.log(this.rollback + '% - Процент отката посреднику');
+    console.log(this.fullPrice + ' руб - полная стоимость');
+    console.log(this.servicePercentPrice + ' руб - полная стоимость за вычетом отката посреднику');
+  },
 };
 appData.init();
 
