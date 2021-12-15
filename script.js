@@ -62,12 +62,11 @@ const appData = {
     })() */
     this.addTitle();
     this.cmsView();
-    this.cmsOtherOption()
-    rollbackInput.addEventListener('input', this.addRollback);
+    rollbackInput.addEventListener('input', this.addRollback.bind(this));
     startBtn.addEventListener('click', this.checkValues.bind(this));  
     buttonPlus.addEventListener('click', this.addScreenBlock);
-    startBtn.addEventListener('click', this.block.bind(this)); // addEventListener - имеет свой констекст вызова (this), bind переопределяет this другим контекстом вызова, в данном случае тот, который находится выше по дереву. (appData).
-    resetBtn.addEventListener('click', this.reset.bind(this));
+    resetBtn.addEventListener('click', this.reset.bind(this));// addEventListener - имеет свой констекст вызова (this), bind переопределяет this другим контекстом вызова, в данном случае тот, который находится выше по дереву. (appData).
+    otherOption.addEventListener('input',this.cmsOtherOption);
   },
   cmsView: function() {
    cmsCheckbox.addEventListener('click', () => {
@@ -79,30 +78,27 @@ const appData = {
      console.dir(otherOption);
    });
   },
-  
   cmsOtherOption: function() {
-       debugger
-    (()=>{
-      console.log(this)
-    })() *
-    otherOption.addEventListener('input', function () {
+      if (this.value === 'other') {
+          debugger
+          (()=>{
+          console.log(this);
+          })();
+      otherInput.style.display = 'flex';
 
-      if (this.value) {
-        debugger
-        (()=>{
-          console.log(this)
-        })() 
-        otherInput.style.display = 'flex';
-      }  else {
-        otherInput.style.display = 'none';
+      } else {
+         (this.value !== 'other');
+          debugger
+          (()=>{
+          console.log(this);
+          })();
+      otherInput.style.display = 'none';
       }
-    });
   },
   addTitle: function() { 
     document.title = title.textContent;
   },
   checkValues: function() {
-    
     this.isError = false;
     screens = document.querySelectorAll('.screen');
     screens.forEach(screen => {
@@ -124,6 +120,30 @@ const appData = {
       const select = screen.querySelector('select');
       const input = screen.querySelector('input');
       const selectName = select.options[select.selectedIndex].textContent;
+      if(select.value === '' || input.value.trim() === '') {
+          startBtn.disabled = true;
+        if(select.value !== '' || input.value.trim() !== '') {
+          startBtn.disabled = false;
+        }
+      } else {
+        select.disabled = true;
+        input.disabled = true;
+        buttonPlus.disabled = true;
+        startBtn.style.display = 'none'
+        resetBtn.style.display = 'flex'
+        otherItemsNumber.forEach((item) => {
+          const check = item.querySelector('input[type=checkbox]');
+          const input = item.querySelector('input[type=text]');
+            check.disabled = true;
+            input.disabled = true;
+            otherItemsPercent.forEach((item) => {
+              const check = item.querySelector('input[type=checkbox]');
+              const input = item.querySelector('input[type=text]');
+              check.disabled = true;
+              input.disabled = true;
+            });
+          });
+      }
         this.screens.push({
           id: index, 
           name: selectName, 
@@ -176,9 +196,8 @@ const appData = {
   },
   addRollback: function(event) {
     rollbackSpan.textContent = event.target.value + '%'; 
-    appData.rollback = +rollbackInput.value
-    this.fullPrice = appData.fullPrice// ПЕРЕОПЕРЕДЕЛИЛ, ЧТОБЫ НЕ БЫЛО NaN В ГРАФЕ "СТОИМОСТЬ С УЧЁТОМ ОТКАТА"
-    this.servicePercentPrice = Math.ceil(this.fullPrice - (this.fullPrice * (appData.rollback / 100 )));
+    this.rollback = +rollbackInput.value
+    this.servicePercentPrice = Math.ceil(this.fullPrice - (this.fullPrice * (this.rollback / 100 )));
     totalCountRollback.value = this.servicePercentPrice;
   },
   logger: function (){
@@ -189,35 +208,6 @@ const appData = {
     console.log(this.rollback + '% - Процент отката посреднику');
     console.log(this.fullPrice + ' руб - полная стоимость');
     console.log(this.servicePercentPrice + ' руб - полная стоимость за вычетом отката посреднику');
-  },
-  block: function () {
-    this.blockScreens();
-    this.blockItems();
-    this.changeStartBtn();
-  },
-  blockScreens: function() {
-    const buttonPlus = document.querySelector('.screen-btn');
-    screens.forEach((screen) => {
-      const select = screen.querySelector('select');
-      const input = screen.querySelector('input');
-      select.disabled = true;
-      input.disabled = true;
-      buttonPlus.disabled = true;
-    });
-  },
-  blockItems: function() {
-    otherItemsPercent.forEach((item) => {
-      const check = item.querySelector('input[type=checkbox]');
-      const input = item.querySelector('input[type=text]');
-      check.disabled = true;
-      input.disabled = true;
-    });
-    otherItemsNumber.forEach((item) => {
-      const check = item.querySelector('input[type=checkbox]');
-      const input = item.querySelector('input[type=text]');
-      check.disabled = true;
-      input.disabled = true;
-    });
   },
   changeStartBtn: function() {
     let btnStart = document.getElementsByClassName('handler_btn')[0];
@@ -240,6 +230,9 @@ const appData = {
         screen.remove();
         }
     });
+    let newScreen = screens[0];
+        screens = [];
+        screens.push(newScreen);
   },
   resetBlockScreens: function() {
     const buttonPlus = document.querySelector('.screen-btn');
@@ -286,6 +279,7 @@ const appData = {
     let btnStart = document.getElementsByClassName('handler_btn')[0];
     btnStart.style.display = '';
   },
+
 };
 appData.init();
 
