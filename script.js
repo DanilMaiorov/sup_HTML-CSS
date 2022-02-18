@@ -21,10 +21,10 @@ const totalCountRollback = document.getElementsByClassName('total-input')[4];
 let screens = document.querySelectorAll('.screen');
 const cloneScreen = screens[0].cloneNode(true);
 
-const cmsCheckbox = document.querySelector('#cms-open')
-const cmsVariants = document.querySelector('.hidden-cms-variants')
+const cmsCheckbox = document.querySelector('#cms-open');
+const cmsVariants = document.querySelector('.hidden-cms-variants');
 const otherOption = document.querySelector('#cms-select');
-const otherInput = document.querySelector('.hidden-cms-variants > .main-controls__input')
+const otherInput = document.querySelector('.hidden-cms-variants > .main-controls__input');
 const otherInputValue = document.querySelector('#cms-other-input');
 
 const appData = {
@@ -89,6 +89,7 @@ const appData = {
       otherInput.style.display = 'none';
       }
       console.log(otherOption.value);
+      
   },
   addTitle: function() { 
     document.title = title.textContent;
@@ -108,6 +109,7 @@ const appData = {
     } else {
     alert('Выберите тип мониторов и их количество');
     }
+    console.log(otherInputValue.value);
   },
   addScreens: function() {
     screens = document.querySelectorAll('.screen');
@@ -124,13 +126,11 @@ const appData = {
         select.disabled = true;
         input.disabled = true;
         buttonPlus.disabled = true;
-
         cmsCheckbox.disabled = true;
         cmsVariants.disabled = true;
         otherOption.disabled = true;
         otherInput.disabled = true;
         otherInputValue.disabled = true;
-
         startBtn.style.display = 'none'
         resetBtn.style.display = 'flex'
         otherItemsNumber.forEach((item) => {
@@ -186,9 +186,9 @@ const appData = {
     }
     for (let key in this.servicesPercent){
       this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100 );
-    };     
-      this.otherOption = +otherOption.value
-      this.otherInputValue = +otherInputValue.value
+    }    
+      this.otherOption = +otherOption.value;
+      this.otherInputValue = +otherInputValue.value;
       if (otherOption.value === '50') {
         this.fullPrice = (+this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber) + ((+this.screenPrice + +this.servicePricesPercent + +this.servicePricesNumber) * (this.otherOption / 100));
       } else if (otherInputValue.value !== 0) {
@@ -365,4 +365,7 @@ function secretNumber () {
       return secretNumber();
 }
 secretNumber(); */
+
+
+
 
