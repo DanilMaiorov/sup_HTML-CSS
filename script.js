@@ -105,7 +105,7 @@ const appData = {
       }
     });        
     if (!this.isError) {
-    this.start();
+      this.start();
     } else {
     alert('Выберите тип мониторов и их количество');
     }
