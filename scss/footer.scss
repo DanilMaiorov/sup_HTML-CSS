@@ -1,0 +1,77 @@
+.footer {
+    padding: 100px 0 80px;
+    background-color: $mainColor;
+    color: $secondColor;
+}
+
+.footer__inner {
+}
+.footer__top {
+    display: flex;
+    justify-content: space-between;
+
+}
+.footer__form {
+    max-width: 500px;
+
+}
+.footer__title {
+    margin-bottom: 27px;
+}
+.footer__form-input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 57px;
+    color: $secondColor;
+    outline: none;
+}
+.footer__form-input::placeholder {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    opacity: 0.2;
+}
+.footer__form-btn {
+    background-color: $secondColor;
+    padding: 10px 66px;
+    border: none;
+    margin-bottom: 110px;
+    text-transform: uppercase;
+    color: #000;
+    font-family: $secondFont;
+    cursor: pointer;
+}
+.footer__logo {
+    align-self: flex-start;
+}
+.footer__logo path{
+    transition: fill 0.3s;
+}
+.footer__logo:hover path{
+    fill: $lightBlueColor;
+}
+.footer__social-title {
+    margin-bottom: 28px;
+    font-weight: 700;
+}
+.footer__gallery {
+    display: grid;
+    gap: 52px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 50px;
+}
+.footer__gallery-item {
+}
+.footer__menu-list {
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+.footer__menu-item {
+}
+.footer__menu-link {
+}

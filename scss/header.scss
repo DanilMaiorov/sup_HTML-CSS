@@ -1,0 +1,121 @@
+.header {
+
+    background-image: url('../img/header-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+}
+.header::before {
+    content: "";
+    position: absolute;
+    background-image: url('../img/header-decor.svg');
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 456px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateY(55%);
+    z-index: 2;
+}
+.header::after {
+    content: "";
+    position: absolute;
+    background-image: url('../img/header-decor.svg');
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 456px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateY(90%) rotate(180deg);
+    z-index: 3;
+}
+.header__top {
+    display: flex;
+    align-items: center;
+    padding: 57px 0;
+    gap: 100px;
+    justify-content: flex-end;
+    font-family: $secondFont;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.header__logo path{
+    transition: fill 0.3s ease;
+}
+.header__logo:hover path{
+    fill: #0093A1;
+}
+.header__btn {
+    text-transform: uppercase;
+    color: $secondColor;
+    padding: 12px 71px;
+    background-color: $mainColor;
+    border: none;
+    cursor: pointer;
+}
+.header__content {
+    min-height: calc(100vh - 161px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+}
+.header__content-box {
+    max-width: 550px;
+    text-align: center;
+    margin-right: 30px;
+    color: $secondColor;
+    font-family: $secondFont;
+    font-weight: 700;
+}
+.header__title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-size: 64px;
+    line-height: 71px;
+}
+.header__text {
+    font-size: 24px;
+    line-height: 27px;
+    margin-bottom: 20px;
+}
+.header__decor-text {
+    position: absolute;
+    bottom: 0;
+    color: $lightBlueColor;
+    bottom: 55px;
+}
+.decor-text__1 {
+    z-index: 1;
+    right: 145px;
+}
+.decor-text__1, .decor-text__2 {
+    font-family: $secondFont;
+    font-weight: 400;
+    font-size: 130px;
+    line-height: 145px;
+    opacity: 0.3;
+}
+.decor-text__2 {
+    z-index: 4;
+    left: 290px;
+    bottom: -90px;
+}
+.decor-text__3 {
+    max-width: 360px;
+    text-align: center;
+    right: 145px;
+    bottom: -60px;
+    z-index: 4;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 39px;
+}

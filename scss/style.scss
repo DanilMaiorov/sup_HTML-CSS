@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Inter:wght@300;400;700;800&display=swap');
+
+$mainFont: 'Inter', sans-serif;
+$mainFontSize: 18px;
+$mainFontWeight: 400;
+$mainColor: #262C27;
+$secondColor: #fff;
+$lightBlueColor: #0093A1;
+$greenColor: #B9C400;
+
+$secondFont: 'Comfortaa', cursive;
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $mainFont;
+    font-size: $mainFontSize;
+    font-weight: $mainFontWeight;
+    line-height: 22px;
+    color: $mainColor;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.container {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.title {
+    text-transform: uppercase;
+    font-family: $secondFont;
+    font-weight: $mainFontWeight;
+    font-size: 60px;
+    line-height: 67px;
+}
+img {
+    object-fit: cover;
+}
+
+@import "./header.scss";
+@import "./main.scss";
+@import "./footer.scss";
+@import "./popup.scss";
+@import "./media.scss";
